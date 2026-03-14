@@ -17,7 +17,9 @@ export function useFilteredAndSortedPeople(people: Person[]) {
 
       switch (true) {
         case !!query &&
-          !person.name.toLowerCase().includes(query.toLowerCase()):
+          ![person.name, person.motherName, person.fatherName].some(field =>
+            field?.trim().toLowerCase().includes(query),
+          ):
           return false;
 
         case sex !== SexFilter.All && person.sex !== sex:
