@@ -6,7 +6,7 @@ import { SexFilter, SortField, SortOrder } from '../types/enums';
 export function useFilteredAndSortedPeople(people: Person[]) {
   const [searchParams] = useSearchParams();
 
-  const query = searchParams.get('query') || '';
+  const query = (searchParams.get('query') || '').trim().toLowerCase();
   const sex = (searchParams.get('sex') || 'all') as SexFilter;
   const sortField = (searchParams.get('sort') || null) as SortField | null;
   const sortOrder = (searchParams.get('order') || 'asc') as SortOrder;
